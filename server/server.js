@@ -1,9 +1,19 @@
-import  { Application } from "https://deno.land/x/oak@v10.5.1/mod.ts";
+import  { Application, Router } from "https://deno.land/x/oak@v10.5.1/mod.ts";
 import { applyGraphQL, gql, GQLError } from "https://deno.land/x/oak_graphql/mod.ts";
-import { users } from './data/users.js';
 
 const PORT = 8000;
 const app = new Application();
+
+const users = [
+  {
+    "firstName": "david",
+    "lastName": "palmer"
+  },
+  {
+    "firstName": "Avery",
+    "lastName": "Garcia"
+  }
+]
 
 const types = gql`
 type User {
@@ -21,7 +31,7 @@ type ResolveType {
 }
 
 type Query {
-  getUser(id: String): User 
+  getUser: [User!]
 }
 
 type Mutation {
@@ -36,24 +46,24 @@ const resolvers = {
     },
   },
   Mutation: {
-    setUser: (parent: any, { input: { firstName, lastName } }: any, context: any, info: any) => {
-      console.log("input:", firstName, lastName);
+    setUser: (_, { input: {firstName, lastName }}) => {
+      users.push({ firstName, lastName });
       return {
-        done: true,
-      };
+        done: true
+      }
     },
   },
 };
 
 const GraphQLService = await applyGraphQL({
+  Router,
   typeDefs: types,
   resolvers: resolvers,
-})
-
+});
 
 app.use(GraphQLService.routes(), GraphQLService.allowedMethods());
 
-app.use(ctx => {
+app.use(ctx => {  
   ctx.response.body = "Hello World";
 });
 
