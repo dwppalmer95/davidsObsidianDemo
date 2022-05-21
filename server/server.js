@@ -1,5 +1,6 @@
 import  { Application, Router } from "https://deno.land/x/oak@v10.5.1/mod.ts";
-import { applyGraphQL, gql, GQLError } from "https://deno.land/x/oak_graphql/mod.ts";
+// import { applyGraphQL, gql, GQLError } from "https://deno.land/x/oak_graphql/mod.ts";
+import { ObsidianRouter, gql } from 'https://deno.land/x/obsidian/mod.ts';
 
 const PORT = 8000;
 const app = new Application();
@@ -55,10 +56,17 @@ const resolvers = {
   },
 };
 
-const GraphQLService = await applyGraphQL({
+// const GraphQLService = await applyGraphQL({
+//   Router,
+//   typeDefs: types,
+//   resolvers: resolvers,
+// });
+
+const GraphQLService = await ObsidianRouter({
   Router,
   typeDefs: types,
   resolvers: resolvers,
+  usePlayground: true,
 });
 
 app.use(GraphQLService.routes(), GraphQLService.allowedMethods());
