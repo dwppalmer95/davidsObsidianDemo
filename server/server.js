@@ -1,6 +1,7 @@
 import  { Application, Router } from "https://deno.land/x/oak@v10.5.1/mod.ts";
 // import { applyGraphQL, gql, GQLError } from "https://deno.land/x/oak_graphql/mod.ts";
 import { ObsidianRouter, gql } from 'https://deno.land/x/obsidian/mod.ts';
+import "https://deno.land/x/dotenv/load.ts";
 
 const PORT = 8000;
 const app = new Application();
@@ -61,7 +62,8 @@ const resolvers = {
 //   typeDefs: types,
 //   resolvers: resolvers,
 // });
-
+console.log('TEST');
+console.log(Deno.env.get("REDIS_HOST"));
 const GraphQLService = await ObsidianRouter({
   Router,
   typeDefs: types,
