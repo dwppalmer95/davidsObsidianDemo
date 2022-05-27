@@ -1,7 +1,8 @@
 import  { Application, Router } from "https://deno.land/x/oak@v10.5.1/mod.ts";
 // import { applyGraphQL, gql, GQLError } from "https://deno.land/x/oak_graphql/mod.ts"; // uncomment to run demo in oak_graphql
-import { gql } from 'https://deno.land/x/obsidian/mod.ts'; // uncomment to run demo in obsidian
-import { ObsidianRouter } from '../obsidian-master/src/Obsidian.ts'; // uncomment to run demo in obsidian
+import { gql } from 'https://deno.land/x/obsidian/mod.ts'; 
+import { ObsidianRouter } from 'https://deno.land/x/obsidian/mod.ts'; // uncomment to run demo in using remote Obsidian project (the one on github)
+// import { ObsidianRouter } from '../obsidian-master/src/Obsidian.ts'; // uncomment to run demo in using local Obsidian project (contains helpful console logs)
 import "https://deno.land/x/dotenv/load.ts";
 
 const PORT = 8000;
