@@ -16,6 +16,9 @@ https://www.youtube.com/watch?v=Rc_HhL55JZM&t=384s
 `obsidian` source code:<br />
 https://github.com/open-source-labs/obsidian
 
+`graphql` documentation (the library used to make GraphQL query requests):
+https://graphql.org/graphql-js/graphql/#graphql
+
 # Instructions
 1. Make necessary installs (use default everything):<br />
   redis: https://redis.io/docs/getting-started/installation/install-redis-on-mac-os/<br />
@@ -26,11 +29,14 @@ https://github.com/open-source-labs/obsidian
 4. In a different terminal, run the denon start script: `denon start`
 5. Open the graphQL sandbox -> go to "http://localhost:8000/graphql"<br />
     Note: the url to the sandbox is the same (by default) in both `obsidian` and `oak_graphql` - look in `src/Obsidian.ts` in the Obsidian source code and you'll find that they import the playground from `oak_graphql` (implemented on line 153)
-6. Make a get request in the playground: 
+6. Make a get request in the playground or postname (if you use postman, set the request type to POST and create the query as GraphQL data type): <br />
+  Another quirk - you MUST include a field "id" and a field "__typename" in your request. "__typename" is metadata in the GraphQL query.
   ```
     query {
       getUser {
+        id
         firstName
+        __typename
       }
     }
   ```
