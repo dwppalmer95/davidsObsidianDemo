@@ -23,7 +23,7 @@ https://graphql.org/graphql-js/graphql/#graphql
 1. Make necessary installs (use default everything):<br />
   redis: https://redis.io/docs/getting-started/installation/install-redis-on-mac-os/<br />
   deno: https://deno.land/manual/getting_started/installation<br />
-  denon: https://deno.land/manual/getting_started/installation (make sure to add denon to your PATH: https://stackoverflow.com/questions/62057786/zsh-command-not-found-denon-even-after-installing-denon)
+  denon: https://deno.land/x/denon@2.5.0 (make sure to add denon to your PATH: https://stackoverflow.com/questions/62057786/zsh-command-not-found-denon-even-after-installing-denon)
 2. Toggle comments in `server.js` such that the import statements and `GraphQLService` variable construction are both with respect to Obsidian (they should be by default)
 3. In a terminal, start a redis server: `redis-server`
 4. In a different terminal, run the denon start script: `denon start`
